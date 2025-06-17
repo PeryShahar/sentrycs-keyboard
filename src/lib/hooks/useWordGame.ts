@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import eventBus from "../utils/EventBus";
 
 const MAX_LENGTH = 5;
 
@@ -10,14 +11,14 @@ export function useWordGame() {
 
   const addLetter = (char: string) => {
     if (letters.length < MAX_LENGTH) {
-      setLetters([...letters, char]);
+      setLetters((prev) => [...prev, char]);
       setStatus("neutral");
     }
   };
 
   const removeLetter = () => {
     if (letters.length > 0) {
-      setLetters(letters.slice(0, -1));
+      setLetters((prev) => prev.slice(0, -1));
       setStatus("neutral");
     }
   };
@@ -43,6 +44,18 @@ export function useWordGame() {
       setStatus("error");
     }
   };
+
+  useEffect(() => {
+    eventBus.registerListener("CHAR_TYPED", addLetter);
+    eventBus.registerListener("BACKSPACE", () => removeLetter());
+    eventBus.registerListener("ENTER", () => submitWord());
+
+    return () => {
+      eventBus.removeListener("CHAR_TYPED");
+      eventBus.removeListener("BACKSPACE");
+      eventBus.removeListener("ENTER");
+    };
+  }, [letters]);
 
   return {
     letters,
