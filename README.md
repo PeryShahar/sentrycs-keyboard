@@ -29,3 +29,11 @@ npm i
 ```bash
 npm run dev
 ```
+
+<img width="600" alt="Screenshot 2025-06-17 at 17 20 23" src="https://github.com/user-attachments/assets/104f6d61-dd14-48d8-9d10-546330b897fd" />
+
+<img width="600" alt="Screenshot 2025-06-17 at 17 20 30" src="https://github.com/user-attachments/assets/f0eda6b5-5fc0-4004-b6ec-c6e62b8576d0" />
+
+<img width="600" alt="Screenshot 2025-06-17 at 17 20 40" src="https://github.com/user-attachments/assets/737b6b2b-c5d9-418b-b3b0-adb7bf4376f7" />
+
+
