@@ -1,7 +1,7 @@
 export class ActionListener {
-  private listeners: Map<string, Array<(data: any) => void>> = new Map();
+  private listeners: Map<string, Array<(data: unknown) => void>> = new Map();
 
-  registerListener(action: string, listener: (data: any) => void): void {
+  registerListener(action: string, listener: (data: unknown) => void): void {
     if (!this.listeners.has(action)) {
       this.listeners.set(action, []);
     }
@@ -12,7 +12,7 @@ export class ActionListener {
     this.listeners.delete(action);
   }
 
-  emit(action: string, data: any): void {
+  emit(action: string, data: unknown): void {
     const actionListeners = this.listeners.get(action);
     if (!actionListeners) {
       throw new Error(`Can't emit an event. Event "${action}" doesn't exist.`);
