@@ -22,12 +22,14 @@ export const Keyboard: React.FC<KeyboardProps> = ({
           {key}
         </button>
       ))}
+
       <button
-        className="col-span-2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded"
+        className="col-span-2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded text-center text-sm"
         onClick={onBackspace}
       >
         Backspace
       </button>
+
       <button
         className="col-span-2 bg-blue-400 hover:bg-blue-500 p-2 rounded"
         onClick={onEnter}
