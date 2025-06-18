@@ -1,14 +1,10 @@
 import React from "react";
+import { useWordGame } from "@/lib/hooks/useWordGame";
 
 export enum EventStatus {
   Neutral = "neutral",
   Success = "success",
   Error = "error",
-}
-
-interface CharGridProps {
-  letters: string[];
-  status: EventStatus;
 }
 
 const borderColorMap: Record<EventStatus, string> = {
@@ -17,7 +13,8 @@ const borderColorMap: Record<EventStatus, string> = {
   [EventStatus.Neutral]: "border-gray-300",
 };
 
-export const CharGrid: React.FC<CharGridProps> = ({ letters, status }) => {
+export const CharGrid: React.FC = () => {
+  const { letters, status } = useWordGame();
   const borderColor = borderColorMap[status];
 
   return (
