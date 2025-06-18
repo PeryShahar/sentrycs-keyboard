@@ -1,23 +1,25 @@
 import React from "react";
 
-interface CharGridProps {
-  letters: string[];
-  status: "neutral" | "success" | "error";
+export enum EventStatus {
+  Neutral = "neutral",
+  Success = "success",
+  Error = "error",
 }
 
-const getBorderColor = (status: CharGridProps["status"]) => {
-  switch (status) {
-    case "success":
-      return "border-green-500";
-    case "error":
-      return "border-red-500";
-    default:
-      return "border-gray-300";
-  }
+interface CharGridProps {
+  letters: string[];
+  status: EventStatus;
+}
+
+const borderColorMap: Record<EventStatus, string> = {
+  [EventStatus.Success]: "border-green-500",
+  [EventStatus.Error]: "border-red-500",
+  [EventStatus.Neutral]: "border-gray-300",
 };
 
 export const CharGrid: React.FC<CharGridProps> = ({ letters, status }) => {
-  const borderColor = getBorderColor(status);
+  const borderColor = borderColorMap[status];
+
   return (
     <div className="flex space-x-2 justify-center my-4">
       {Array.from({ length: 5 }, (_, i) => (

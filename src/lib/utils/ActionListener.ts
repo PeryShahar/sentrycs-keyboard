@@ -1,11 +1,13 @@
 export class ActionListener {
   private listeners: Map<string, Array<(data: unknown) => void>> = new Map();
 
-  registerListener(action: string, listener: (data: unknown) => void): void {
-    if (!this.listeners.has(action)) {
-      this.listeners.set(action, []);
+  registerListener(action: string, listener: (data: any) => void): void {
+    const actionListeners = this.listeners.get(action);
+    if (actionListeners) {
+      actionListeners.push(listener);
+    } else {
+      this.listeners.set(action, [listener]);
     }
-    this.listeners.get(action)!.push(listener);
   }
 
   removeListener(action: string): void {
