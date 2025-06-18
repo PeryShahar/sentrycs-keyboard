@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { EventStatus } from "@/components/CharGrid";
 import eventBus from "../utils/EventBus";
+import { EventStatus, EVENTS } from "../types";
 
 const MAX_LENGTH = 5;
 
@@ -54,14 +54,14 @@ export function useWordGame() {
   }, []);
 
   useEffect(() => {
-    eventBus.registerListener("CHAR_TYPED", addLetter);
-    eventBus.registerListener("BACKSPACE", removeLetter);
-    eventBus.registerListener("ENTER", submitWord);
+    eventBus.registerListener(EVENTS.CHAR_TYPED, addLetter);
+    eventBus.registerListener(EVENTS.BACKSPACE, removeLetter);
+    eventBus.registerListener(EVENTS.ENTER, submitWord);
 
     return () => {
-      eventBus.removeListener("CHAR_TYPED");
-      eventBus.removeListener("BACKSPACE");
-      eventBus.removeListener("ENTER");
+      eventBus.removeListener(EVENTS.CHAR_TYPED);
+      eventBus.removeListener(EVENTS.BACKSPACE);
+      eventBus.removeListener(EVENTS.ENTER);
     };
   }, [addLetter, removeLetter, submitWord]);
 

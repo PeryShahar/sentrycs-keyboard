@@ -1,5 +1,6 @@
 import React from "react";
 import eventBus from "@/lib/utils/EventBus";
+import { EVENTS } from "@/lib/types";
 
 const keys = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
 
@@ -10,7 +11,7 @@ export const Keyboard: React.FC = () => {
         <button
           key={key}
           className="bg-gray-200 hover:bg-gray-300 p-2 rounded"
-          onClick={() => eventBus.emit("CHAR_TYPED", key)}
+          onClick={() => eventBus.emit(EVENTS.CHAR_TYPED, key)}
         >
           {key}
         </button>
@@ -18,14 +19,14 @@ export const Keyboard: React.FC = () => {
 
       <button
         className="col-span-2 bg-yellow-400 hover:bg-yellow-500 p-2 rounded text-center text-sm"
-        onClick={() => eventBus.emit("BACKSPACE", null)}
+        onClick={() => eventBus.emit(EVENTS.BACKSPACE, null)}
       >
         Backspace
       </button>
 
       <button
         className="col-span-2 bg-blue-400 hover:bg-blue-500 p-2 rounded"
-        onClick={() => eventBus.emit("ENTER", null)}
+        onClick={() => eventBus.emit(EVENTS.ENTER, null)}
       >
         Enter
       </button>
